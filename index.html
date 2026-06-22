@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Özür Dilerim...</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght=600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap');
 
         body {
             margin: 0;
@@ -105,7 +105,7 @@
 <body>
 
     <div id="container">
-        <img id="bubu-gif" src="https://media.tenor.com/kK2E1Y3XWwAAAAi/bubu-dudu-crying.gif" alt="Ağlayan Bubu Dudu">
+        <img id="bubu-gif" src="Crying bubu.gif" alt="Ağlayan Bubu Dudu">
         
         <h1 id="question">Lütfen beni affet sevgilim...</h1>
         <p id="sub-text">Seni kırdığım için çok üzgünüm. Sensiz bir Bubu yarım kalır. Beni affediyor musun? 🥺</p>
@@ -149,18 +149,20 @@
             yesBtn.style.padding = (currentPadding + 5) + 'px 0';
             yesBtn.style.width = (currentWidth + 20) + 'px';
 
+            // Hayır'a basıldıkça senin seçtiğin diğer dramatik görsellere geçiş yapıyoruz
             if(noClickCount === 2) {
-                gif.src = "https://media1.tenor.com/m/o6oAofnF9jUAAAAC/tkthao219-bubududu.gif"; 
+                gif.src = "dudu-making-bubu-cry-sad.gif"; 
             } else if (noClickCount === 5) {
-                gif.src = "https://media1.tenor.com/m/Nl5a1WzE1gYAAAAC/bubu-bubu-dudu.gif";
+                gif.src = "bubu punching dudu.jpg";
             }
         }
 
         function sayYes() {
             const container = document.getElementById('container');
             
+            // Evet dendiğinde senin öpüşme görselin çıkıyor
             container.innerHTML = `
-                <img src="https://media1.tenor.com/m/8C-fBqB0NncAAAAC/bubu-dudu-kiss.gif" alt="Mutlu Bubu Dudu" style="max-width: 90%;">
+                <img src="kiss.gif" alt="Mutlu Bubu Dudu" style="max-width: 90%;">
                 <h1 style="color: #ff4757; font-size: 32px; margin-top: 20px;">Yuppiiiii! 🎉</h1>
                 <p style="color: #2f3542; font-size: 18px; font-weight: bold;">Seni dünyalar kadar çok seviyorum! ❤️ İyi ki varsın!</p>
             `;
