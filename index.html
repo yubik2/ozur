@@ -105,6 +105,7 @@
 <body>
 
     <div id="container">
+        <!-- Senin yüklediğin ilk ağlayan görsel -->
         <img id="bubu-gif" src="Crying bubu.gif" alt="Ağlayan Bubu Dudu">
         
         <h1 id="question">Lütfen beni affet sevgilim...</h1>
@@ -129,8 +130,35 @@
             "Kalbim kırılıyor 💔"
         ];
 
+        // TELEGRAM BİLDİRİM FONKSİYONU
+        function sendTelegram(action) {
+            // DİKKAT: BotFather'dan aldığın TOKEN'ı buraya yapıştır (Tırnakları silme)
+            const token = "8904304799:AAH8L2PR9k_JrHe7dcIexO8z6y0aoNJJQ40"; 
+            
+            // DİKKAT: userinfobot'tan aldığın ID'yi buraya yapıştır (Tırnakları silme)
+            const chatId = "8652909835"; 
+            
+            const time = new Date().toLocaleString('tr-TR');
+            const message = "🔔 Siteden Bildirim!\n\nHareket: " + action + "\nSaat: " + time;
+
+            fetch("https://api.telegram.org/bot" + token + "/sendMessage", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message
+                })
+            }).catch(error => console.log("Telegram mesajı gönderilemedi."));
+        }
+
         function sayNo() {
             noClickCount++;
+            
+            // Telegram'a Hayır mesajı gönder
+            sendTelegram("Hayır butonuna bastı. (Kaçıncı: " + noClickCount + ")");
+
             const yesBtn = document.getElementById('yes-btn');
             const noBtn = document.getElementById('no-btn');
             const gif = document.getElementById('bubu-gif');
@@ -149,7 +177,6 @@
             yesBtn.style.padding = (currentPadding + 5) + 'px 0';
             yesBtn.style.width = (currentWidth + 20) + 'px';
 
-            // Hayır'a basıldıkça senin seçtiğin diğer dramatik görsellere geçiş yapıyoruz
             if(noClickCount === 2) {
                 gif.src = "dudu-making-bubu-cry-sad.gif"; 
             } else if (noClickCount === 5) {
@@ -158,9 +185,11 @@
         }
 
         function sayYes() {
+            // Telegram'a Evet mesajı gönder
+            sendTelegram("EVET! Sonunda affetti ve Evet'e bastı! 🎉");
+
             const container = document.getElementById('container');
             
-            // Evet dendiğinde senin öpüşme görselin çıkıyor
             container.innerHTML = `
                 <img src="kiss.gif" alt="Mutlu Bubu Dudu" style="max-width: 90%;">
                 <h1 style="color: #ff4757; font-size: 32px; margin-top: 20px;">Yuppiiiii! 🎉</h1>
